@@ -13,7 +13,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        byte electrodes = 16;
+        byte electrodes = 1;
         short sampleRate = 256; //typical sample rate: 256 Hz to 2048 Hz
         
         Modem modem = new Modem(electrodes);
@@ -22,7 +22,7 @@ public class Main
         
         while(true)
         {
-            for(byte i = 0; i <= electrodes; i++)
+            for(byte i = 0; i < electrodes; i++)
             {
                 float microVolts = modem.getMicroVolts(i);
                 

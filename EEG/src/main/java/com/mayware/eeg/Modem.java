@@ -26,7 +26,7 @@ public class Modem
             
             for(int i = 0; i < mixerInfo.length; i++)
             {
-                if(mixerInfo[i].getName().contains("USB Microphone"))
+                if(mixerInfo[i].getName().startsWith("Microphone"))
                 {
                     TargetDataLine line = (TargetDataLine)AudioSystem.getMixer(mixerInfo[i]).getLine(new DataLine.Info(TargetDataLine.class, null));
                     line.open();
