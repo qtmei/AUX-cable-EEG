@@ -13,11 +13,11 @@ import javax.sound.sampled.*;
 
 public class Modem
 {
-    private float[] microVoltages;
+    private TargetDataLine[] lines;
     
     public Modem(byte electrodes)
     {
-        microVoltages = new float[electrodes];
+        lines = new TargetDataLine[electrodes];
         
         try
         {
@@ -33,9 +33,7 @@ public class Modem
                     line.open();
                     line.start();
                     
-                    float level = line.getLevel(); //0:1
-                    float millivolts = level * 2 - 1; //-1:1
-                    microVoltages[microVoltages.length] = (millivolts / 1000 + 1) * 200 - 200; //-200:200
+                    lines[lines.length - 1] = line;
                 }
             }
         }
@@ -45,8 +43,11 @@ public class Modem
         }
     }
     
-    public float microVolts(char electrode)
+    public float getMicroVolts(char electrode)
     {
-        return microVoltages[electrode];
+        float level = lines[electrode].getLevel(); //0:1
+        float millivolts = level * 2 - 1; //-1:1
+        
+        return (millivolts / 1000 + 1) * 200 - 200; //-200:200
     }
 }

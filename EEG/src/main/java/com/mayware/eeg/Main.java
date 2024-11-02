@@ -22,7 +22,7 @@ public class Main
         while(true)
         {
             for(char i = 0; i <= electrodes; i++)
-                logger.log(i, modem.microVolts(i));
+                logger.log(i, modem.getMicroVolts(i));
             
             try
             {
