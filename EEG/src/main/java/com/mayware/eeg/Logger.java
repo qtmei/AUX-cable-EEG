@@ -4,10 +4,9 @@
  */
 package com.mayware.eeg;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -17,15 +16,19 @@ import java.time.format.DateTimeFormatter;
 public class Logger
 {
     private FileWriter writer;
+    private File file;
     public long initialMilliseconds;
     
     public Logger()
     {
         initialMilliseconds = System.currentTimeMillis();
+        file = new File(initialMilliseconds + "_sample.txt");
         
         try
         {
-            writer = new FileWriter(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "_sample.txt");
+            file.createNewFile();
+            
+            writer = new FileWriter(file.getName());
         }
         catch(IOException ex)
         {
