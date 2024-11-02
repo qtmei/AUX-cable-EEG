@@ -17,7 +17,7 @@ public class Logger
 {
     private File file;
     private FileWriter writer;
-    public long initialMilliseconds;
+    private long initialMilliseconds;
     
     public Logger()
     {
@@ -41,7 +41,7 @@ public class Logger
     {
         try
         {
-            writer.append(System.currentTimeMillis() - initialMilliseconds + "ms " + electrode + ": " + microVolts + "µV\n");
+            writer.append(System.currentTimeMillis() - initialMilliseconds + " " + electrode + " " + microVolts + "\n");
         }
         catch(IOException ex)
         {
