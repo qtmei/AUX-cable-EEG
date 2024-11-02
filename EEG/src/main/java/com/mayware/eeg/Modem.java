@@ -42,7 +42,7 @@ public class Modem
         }
     }
     
-    public float getMicroVolts(char electrode)
+    public float getMicroVolts(byte electrode)
     {
         float microvolts = lines[electrode].getLevel() * 1000; //volume 0:1 = millivolts * 1000 = microvolts
         

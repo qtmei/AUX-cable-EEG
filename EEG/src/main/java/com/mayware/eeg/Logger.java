@@ -22,6 +22,7 @@ public class Logger
     public Logger()
     {
         initialMilliseconds = System.currentTimeMillis();
+        
         file = new File(initialMilliseconds + "_sample.txt");
         
         try
@@ -36,11 +37,11 @@ public class Logger
         }
     }
     
-    public void log(char electrode, float microVolts)
+    public void log(byte electrode, float microVolts)
     {
         try
         {
-            writer.append(System.currentTimeMillis() - initialMilliseconds + "ms" + electrode + ":" + microVolts + "µV");
+            writer.append(System.currentTimeMillis() - initialMilliseconds + "ms " + electrode + ": " + microVolts + "µV\n");
         }
         catch(IOException ex)
         {
