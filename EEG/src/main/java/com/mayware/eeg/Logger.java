@@ -15,8 +15,8 @@ import java.io.IOException;
 
 public class Logger
 {
-    private FileWriter writer;
     private File file;
+    private FileWriter writer;
     public long initialMilliseconds;
     
     public Logger()

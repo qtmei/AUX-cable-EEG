@@ -14,6 +14,7 @@ import javax.sound.sampled.*;
 public class Modem
 {
     private TargetDataLine[] lines;
+    private boolean ACsignFlip = false;
     
     public Modem(byte electrodes)
     {
@@ -27,9 +28,7 @@ public class Modem
             {
                 if(mixerInfo[i].getName().contains("USB Microphone"))
                 {
-                    Mixer mixer = AudioSystem.getMixer(mixerInfo[i]);
-
-                    TargetDataLine line = (TargetDataLine)mixer.getLine(new DataLine.Info(TargetDataLine.class, null));
+                    TargetDataLine line = (TargetDataLine)AudioSystem.getMixer(mixerInfo[i]).getLine(new DataLine.Info(TargetDataLine.class, null));
                     line.open();
                     line.start();
                     
@@ -45,9 +44,8 @@ public class Modem
     
     public float getMicroVolts(char electrode)
     {
-        float level = lines[electrode].getLevel(); //0:1
-        float millivolts = level * 2 - 1; //-1:1
+        float microvolts = lines[electrode].getLevel() * 1000; //volume 0:1 = millivolts * 1000 = microvolts
         
-        return (millivolts / 1000 + 1) * 200 - 200; //-200:200
+        return ACsignFlip ? -microvolts : microvolts; //make voltage alternating
     }
 }
