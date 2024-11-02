@@ -11,5 +11,28 @@ package com.mayware.eeg;
 
 public class Oscilloscope
 {
+    private long initialMilliseconds;
     
+    public Oscilloscope()
+    {
+        initialMilliseconds = System.currentTimeMillis();
+    }
+    
+    public void display(byte electrode, float microVolts)
+    {
+        String leftSpace = "", rightSpace = "";
+        
+        for(float i = -1000; i < microVolts; i++)
+            leftSpace += " ";
+        
+        for(float i = 1000; i > microVolts; i--)
+            rightSpace += " ";
+        
+        System.out.print(System.currentTimeMillis() - initialMilliseconds + "ms " + electrode + ": -1000µV" + leftSpace + "*" + rightSpace + "1000µV\t");
+    }
+    
+    public void segment()
+    {
+        System.out.println();
+    }
 }

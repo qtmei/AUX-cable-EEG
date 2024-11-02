@@ -41,7 +41,19 @@ public class Logger
     {
         try
         {
-            writer.append(System.currentTimeMillis() - initialMilliseconds + " " + electrode + " " + microVolts + "\n");
+            writer.append(System.currentTimeMillis() - initialMilliseconds + "ms " + electrode + ": " + microVolts + "µV\t");
+        }
+        catch(IOException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void segment()
+    {
+        try
+        {
+            writer.append("\n");
         }
         catch(IOException ex)
         {

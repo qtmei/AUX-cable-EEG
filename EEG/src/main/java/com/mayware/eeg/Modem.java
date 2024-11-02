@@ -46,6 +46,8 @@ public class Modem
     {
         float microvolts = lines[electrode].getLevel() * 1000; //volume 0:1 = millivolts * 1000 = microvolts
         
+        ACsignFlip = !ACsignFlip;
+        
         return ACsignFlip ? -microvolts : microvolts; //make voltage alternating
     }
 }

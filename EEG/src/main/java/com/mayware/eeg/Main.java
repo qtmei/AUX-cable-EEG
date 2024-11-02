@@ -18,11 +18,20 @@ public class Main
         
         Modem modem = new Modem(electrodes);
         Logger logger = new Logger();
+        Oscilloscope oscilloscope = new Oscilloscope();
         
         while(true)
         {
             for(byte i = 0; i <= electrodes; i++)
-                logger.log(i, modem.getMicroVolts(i));
+            {
+                float microVolts = modem.getMicroVolts(i);
+                
+                logger.log(i, microVolts);
+                oscilloscope.display(i, microVolts);
+            }
+            
+            logger.segment();
+            oscilloscope.segment();
             
             try
             {
