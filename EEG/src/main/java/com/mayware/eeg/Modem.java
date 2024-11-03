@@ -6,8 +6,7 @@ package com.mayware.eeg;
 
 import javax.sound.sampled.*;
 
-/**
- *
+/*
  * @author May Fontenot
  */
 
@@ -16,29 +15,22 @@ public class Modem
     private TargetDataLine[] lines;
     private boolean ACsignFlip = false;
     
-    public Modem(byte electrodes)
+    public Modem(byte electrodes) throws Exception
     {
         lines = new TargetDataLine[electrodes];
         
-        try
-        {
-            Mixer.Info[] mixerInfo = AudioSystem.getMixerInfo();
+        Mixer.Info[] mixerInfo = AudioSystem.getMixerInfo();
             
-            for(int i = 0; i < mixerInfo.length; i++)
-            {
-                if(mixerInfo[i].getName().startsWith("Microphone"))
-                {
-                    TargetDataLine line = (TargetDataLine)AudioSystem.getMixer(mixerInfo[i]).getLine(new DataLine.Info(TargetDataLine.class, null));
-                    line.open();
-                    line.start();
-                    
-                    lines[lines.length - 1] = line;
-                }
-            }
-        }
-        catch(LineUnavailableException ex)
+        for(int i = 0; i < mixerInfo.length; i++)
         {
-            System.out.println(ex.getMessage());
+            if(mixerInfo[i].getName().startsWith("Microphone"))
+            {
+                TargetDataLine line = (TargetDataLine)AudioSystem.getMixer(mixerInfo[i]).getLine(new DataLine.Info(TargetDataLine.class, null));
+                line.open();
+                line.start();
+
+                lines[lines.length - 1] = line;
+            }
         }
     }
     

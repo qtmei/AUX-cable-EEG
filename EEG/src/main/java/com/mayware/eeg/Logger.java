@@ -6,10 +6,8 @@ package com.mayware.eeg;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 
-/**
- *
+/*
  * @author May Fontenot
  */
 
@@ -17,45 +15,23 @@ public class Logger
 {
     private File file;
     private FileWriter writer;
-    private final long initialMilliseconds = System.currentTimeMillis();;
+    private final long initialMilliseconds = System.currentTimeMillis();
     
-    public Logger()
+    public Logger() throws Exception
     {
         file = new File(initialMilliseconds + "_sample.txt");
+        file.createNewFile();
         
-        try
-        {
-            file.createNewFile();
-            
-            writer = new FileWriter(file.getName());
-        }
-        catch(IOException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
+        writer = new FileWriter(file.getName());
     }
     
-    public void log(byte electrode, float microVolts)
+    public void log(byte electrode, float microVolts) throws Exception
     {
-        try
-        {
-            writer.append(System.currentTimeMillis() - initialMilliseconds + "ms " + electrode + ": " + microVolts + "µV\t");
-        }
-        catch(IOException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
+        writer.append(System.currentTimeMillis() - initialMilliseconds + "ms " + electrode + ": " + microVolts + "µV\t");
     }
     
-    public void segment()
+    public void segment() throws Exception
     {
-        try
-        {
-            writer.append("\n");
-        }
-        catch(IOException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
+        writer.append("\n");
     }
 }

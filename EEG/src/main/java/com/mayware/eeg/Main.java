@@ -4,14 +4,13 @@
  */
 package com.mayware.eeg;
 
-/**
- *
+/*
  * @author May Fontenot
  */
 
 public class Main
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
         byte electrodes = 1; //typical electrode count: 16-32
         short sampleRate = 256; //typical sample rate: 256 Hz to 2048 Hz
@@ -33,14 +32,7 @@ public class Main
             logger.segment();
             oscilloscope.segment();
             
-            try
-            {
-                Thread.sleep(1000 / sampleRate);
-            }
-            catch(InterruptedException ex)
-            {
-                System.out.println(ex.getMessage());
-            }
+            Thread.sleep(1000 / sampleRate);
         }
     }
 }

@@ -4,14 +4,13 @@
  */
 package com.mayware.eeg;
 
-/**
- *
+/*
  * @author May Fontenot
  */
 
 public class Oscilloscope
 {
-    private final long initialMilliseconds = System.currentTimeMillis();;
+    private final long initialMilliseconds = System.currentTimeMillis();
     
     public void display(byte electrode, float microVolts)
     {
