@@ -17,12 +17,10 @@ public class Logger
 {
     private File file;
     private FileWriter writer;
-    private long initialMilliseconds;
+    private final long initialMilliseconds = System.currentTimeMillis();;
     
     public Logger()
     {
-        initialMilliseconds = System.currentTimeMillis();
-        
         file = new File(initialMilliseconds + "_sample.txt");
         
         try

@@ -13,7 +13,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        byte electrodes = 1;
+        byte electrodes = 1; //typical electrode count: 16-32
         short sampleRate = 256; //typical sample rate: 256 Hz to 2048 Hz
         
         Modem modem = new Modem(electrodes);

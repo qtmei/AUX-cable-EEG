@@ -11,12 +11,7 @@ package com.mayware.eeg;
 
 public class Oscilloscope
 {
-    private long initialMilliseconds;
-    
-    public Oscilloscope()
-    {
-        initialMilliseconds = System.currentTimeMillis();
-    }
+    private final long initialMilliseconds = System.currentTimeMillis();;
     
     public void display(byte electrode, float microVolts)
     {
