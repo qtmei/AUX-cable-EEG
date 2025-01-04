@@ -1,14 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mayware.eeg;
 
 import javax.sound.sampled.*;
-
-/*
- * @author May Fontenot
- */
 
 public class Modem extends Thread
 {
